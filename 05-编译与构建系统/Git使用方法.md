@@ -172,6 +172,10 @@ git config --show-origin --list
 
 **A：** 严格来说不是必须 Fork。只有在一种典型情况下需要 Fork——你没有原仓库的写权限。
 
+### Q：远程仓库比本地新怎么办？GitHub上的 main 分支已经有新的提交，但是你的本地没有。
+
+**A：** 解决方法：先拉取远程代码，自动合并成功。或出现冲突，查看**git status**，解决冲突后add、commit、push。如果你确定远程内容不要了，可以强制覆盖 GitHub指令为git push -f origin main
+
 开源项目非常经典的模式：
 
 ```
