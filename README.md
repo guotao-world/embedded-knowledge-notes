@@ -64,7 +64,7 @@
 ### 05-编译与构建系统
 
 - [Git 使用方法](./05-编译与构建系统/Git使用方法.md)
-- [Kconfig讲解](./05-编译与构建系统/Kconfig讲解.md)
+- [Kconfig 讲解](./05-编译与构建系统/Kconfig讲解.md)
 - [Source Insight使用方法](./05-编译与构建系统/Source-Insight使用方法.md)
 - [imx6ull linux驱动makefile模板](./05-编译与构建系统/imx6ull-linux驱动makefile模板.md)
 - [imx6ull芯片内核编译](./05-编译与构建系统/imx6ull芯片内核编译.md)
