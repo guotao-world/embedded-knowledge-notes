@@ -66,11 +66,11 @@
 - [Kconfig讲解](./05-编译与构建系统/Kconfig讲解.md)
 - [Source Insight使用方法](./05-编译与构建系统/Source-Insight使用方法.md)
 - [imx6ull linux驱动makefile模板](./05-编译与构建系统/imx6ull-linux驱动makefile模板.md)
+- [imx6ull芯片内核编译](./05-编译与构建系统/imx6ull芯片内核编译.md)
 - [linux源码顶层结构](./05-编译与构建系统/linux源码顶层结构.md)
 - [linux驱动编译流程](./05-编译与构建系统/linux驱动编译流程.md)
 - [嵌入式Linux编译工具链的不同](./05-编译与构建系统/嵌入式Linux编译工具链的不同.md)
 - [编译imx6ull linux应用app](./05-编译与构建系统/编译imx6ull-linux应用app.md)
-- [编译内核](./05-编译与构建系统/编译内核.md)
 - [编译设备树](./05-编译与构建系统/编译设备树.md)
 
 ### 06-U-Boot与启动
