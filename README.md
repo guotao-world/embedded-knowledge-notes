@@ -41,6 +41,7 @@
 - [linux时钟](./03-驱动开发基础/linux时钟.md)
 - [linux驱动设备号](./03-驱动开发基础/linux驱动设备号.md)
 - [paltform总线](./03-驱动开发基础/paltform总线.md)
+- [pinctrl 子系统与 GPIO 子系统](./03-驱动开发基础/pinctrl子系统与GPIO子系统.md)
 - [pinctrl 子系统与 GPIO 子系统](./03-驱动开发基础/pinptr子系统与GPIO子系统.md)
 - [regmap寄存器访问抽象框架](./03-驱动开发基础/regmap寄存器访问抽象框架.md)
 - [regmap示例](./03-驱动开发基础/regmap示例.md)
