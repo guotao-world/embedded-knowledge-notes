@@ -1,64 +1,107 @@
-# 编译imx6ull linux应用app
+# 编译 imx6ull Linux 应用 app
 
-**环境安装：**
+## 一、环境安装
 
-1.  **下载**：去[Linaro官网]{.underline}下载适合64位系统的版本，比如gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz。
+### 1. 下载
 
-2.  **解压**（假设放到/usr/local/arm）：
+去 [Linaro 官网](https://www.linaro.org/) 下载适合 64 位系统的版本，例如：
 
+```
+gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz
+```
+
+### 2. 解压（假设放到 /usr/local/arm）
+
+```bash
 sudo mkdir -p /usr/local/arm
 sudo tar -xvf gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz -C /usr/local/arm/
+```
 
-**3. 配置并验证环境变量**
+### 3. 配置并验证环境变量
 
-为了让编译器随时可用，将bin目录加入环境变量。
+为了让编译器随时可用，将 bin 目录加入环境变量：
 
+```bash
 export PATH=$PATH:/usr/local/arm/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin
+```
 
-**永久加入环境变量（为了省事可以加入/etc/profile）：**
+### 永久加入环境变量
 
-**~/.bashrc**（用户级，你检查过了，没有添加）
+| 文件 | 级别 | 说明 |
+|------|------|------|
+| `~/.bashrc` | 用户级 | 最稳妥，只影响终端 |
+| `~/.profile` / `~/.bash_profile` | 用户级登录脚本 | 不建议动，可能影响桌面环境 |
+| `/etc/profile` / `/etc/environment` | 系统级全局 | 影响所有用户 |
 
-**~/.profile**或**~/.bash_profile**（用户级登录脚本）
+> 建议：直接在 `~/.bashrc` 末尾添加（最稳妥，只影响终端）。
 
-**/etc/profile**和**/etc/environment**（系统级全局配置）
+![环境变量配置](../images/image11.png)
 
-**AI建议：不要动~/.profile**（因为它是系统级敏感配置，容易影响桌面环境）。**直接在~/.bashrc末尾添加**（最稳妥，只影响终端）：
+### 4. 生效并验证
 
-![](../images/image11.png)
-
-**4.生效并验证：**
-
+```bash
 arm-linux-gnueabihf-gcc -v
+```
 
-**5.若使用makefile则需：**
+### 5. 若使用 Makefile 则需
 
+```bash
 export ARCH=arm
 export CROSS_COMPILE=arm-linux-gnueabihf-
 export PATH=$PATH:/your/toolchain/bin
+```
 
-**编译app标准指令：**
+---
 
+## 二、编译 app 标准指令
+
+```bash
 ${CC} -o testApp testApp.c -Ixxx -Lyyy -lzzz
+```
 
-xxx 表示头文件的路径，yyy表示库文件的路径，zzz表示链接库。
+- `xxx`：头文件的路径
+- `yyy`：库文件的路径
+- `zzz`：链接库
 
-**编译示例：**
+---
 
+## 三、编译示例
+
+```bash
 arm-linux-gnueabihf-gcc hello.c -o hello
-arm-linux-gnueabihf-gcc -std=gnu99 --sysroot=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi -o playAndRecoed playAndRecoed.c -lpthread -lasound
+```
 
-**使用ssh拷贝到开发板：**
+```bash
+arm-linux-gnueabihf-gcc -std=gnu99 \
+    --sysroot=/opt/fsl-imx-x11/4.1.15-2.1.0/sysroots/cortexa7hf-neon-poky-linux-gnueabi \
+    -o playAndRecoed playAndRecoed.c -lpthread -lasound
+```
 
+---
+
+## 四、使用 ssh 拷贝到开发板
+
+```bash
 scp helloworld root@192.168.55.71:/home/root/
 scp audioApp root@192.168.55.71:/home/root/
 scp playAndRecoed root@192.168.55.71:/home/root/
+```
 
-**在开发板上执行：**
+---
 
+## 五、在开发板上执行
+
+```bash
 chmod +x audioApp
 ./audioApp
+```
 
-**使用file命令查看文件属性，确认它确实是ARM架构的：**
+---
 
+## 六、验证文件架构
+
+使用 `file` 命令查看文件属性，确认它确实是 ARM 架构：
+
+```bash
 file helloworld
+```
