@@ -21,6 +21,10 @@ jobs:
         with:
           # 获取完整历史，避免浅克隆导致的问题
           fetch-depth: 0
+          # 持久化凭证，使后续 git push 能自动认证
+          persist-credentials: true
+          # 显式传入 token
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # 2. 设置 Python 环境
       - name: Set up Python
@@ -35,9 +39,11 @@ jobs:
       # 4. 检测 README.md 是否变化，如果有变化则提交
       - name: Commit and push if changed
         run: |
+          set -e
+
           # 配置 git 用户
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # 检查 README.md 是否有变化
           if git diff --quiet README.md; then
@@ -47,9 +53,7 @@ jobs:
             git add README.md
             # 使用 [skip ci] 避免循环触发
             git commit -m "update README toc [skip ci]"
-            git push
+            # 明确推送到 main 分支
+            git push origin main
             echo "README.md 已提交并推送"
           fi
-        env:
-          # 使用 GitHub 提供的 token 进行认证
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
