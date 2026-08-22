@@ -79,14 +79,14 @@
 ### 06-U-Boot与启动
 
 - [Secure Boot 的核心思想](./06-U-Boot与启动/Secure-Boot-的核心思想.md)
-- [uboot启动linux内核指令](./06-U-Boot与启动/uboot启动linux内核指令.md)
+- [U-Boot 启动 Linux 内核指令](./06-U-Boot与启动/uboot启动linux内核指令.md)
 
 ### 07-开发板操作与环境
 
-- [LINUX开发板中F4或其他按键失效](./07-开发板操作与环境/LINUX开发板中F4或其他按键失效.md)
-- [RK3568源码结构](./07-开发板操作与环境/RK3568源码结构.md)
-- [linux备份emmc镜像](./07-开发板操作与环境/linux备份emmc镜像.md)
-- [linux对内存卡做镜像](./07-开发板操作与环境/linux对内存卡做镜像.md)
+- [LINUX 开发板中 F4 或其他按键失效](./07-开发板操作与环境/LINUX开发板中F4或其他按键失效.md)
+- [RK3568 源码结构](./07-开发板操作与环境/RK3568源码结构.md)
+- [Linux 备份 eMMC 镜像](./07-开发板操作与环境/linux备份emmc镜像.md)
+- [Linux 对内存卡做镜像](./07-开发板操作与环境/linux对内存卡做镜像.md)
 - [linux开发板scp传输文件](./07-开发板操作与环境/linux开发板scp传输文件.md)
 - [linux开发板常用命令](./07-开发板操作与环境/linux开发板常用命令.md)
 - [linux开发板挂载共享文件夹](./07-开发板操作与环境/linux开发板挂载共享文件夹.md)
