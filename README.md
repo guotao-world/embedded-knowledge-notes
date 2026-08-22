@@ -18,7 +18,7 @@
 - [LINUX 并发与竞争](./02-内核核心机制/LINUX并发与竞争.md)
 - [LINUX 等待队列](./02-内核核心机制/LINUX等待队列.md)
 - [STM32 与 LINUX 的任务调度方式](./02-内核核心机制/STM32与LINUX的任务调度方式.md)
-- [imx6ull Linux中断与stm32中断](./02-内核核心机制/imx6ull-Linux中断与stm32中断.md)
+- [imx6ull Linux 中断与 stm32 中断](./02-内核核心机制/imx6ull-Linux中断与stm32中断.md)
 - [linux 启动流程](./02-内核核心机制/linux启动流程.md)
 - [linux 定时器](./02-内核核心机制/linux定时器.md)
 - [linux 用户态内核态](./02-内核核心机制/linux用户态内核态.md)
