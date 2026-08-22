@@ -37,7 +37,7 @@
 - [Linux ioctl 操作](./03-驱动开发基础/linux-ioctl操作.md)
 - [Linux 串口驱动](./03-驱动开发基础/linux串口驱动.md)
 - [Linux 总线驱动模型核心例程](./03-驱动开发基础/linux总线驱动模型核心例程.md)
-- [linux总线驱动模型设备创建顺序](./03-驱动开发基础/linux总线驱动模型设备创建顺序.md)
+- [Linux 总线驱动模型设备创建顺序](./03-驱动开发基础/linux总线驱动模型设备创建顺序.md)
 - [linux时钟](./03-驱动开发基础/linux时钟.md)
 - [linux驱动设备号](./03-驱动开发基础/linux驱动设备号.md)
 - [paltform总线](./03-驱动开发基础/paltform总线.md)
