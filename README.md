@@ -73,7 +73,7 @@
 - [Linux 源码顶层结构](./05-编译与构建系统/linux源码顶层结构.md)
 - [Linux 驱动编译流程](./05-编译与构建系统/linux驱动编译流程.md)
 - [嵌入式 Linux 编译工具链的不同](./05-编译与构建系统/嵌入式Linux编译工具链的不同.md)
-- [编译imx6ull linux应用app](./05-编译与构建系统/编译imx6ull-linux应用app.md)
+- [编译 imx6ull Linux 应用 app](./05-编译与构建系统/编译imx6ull-linux应用app.md)
 - [编译设备树](./05-编译与构建系统/编译设备树.md)
 
 ### 06-U-Boot与启动
