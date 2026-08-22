@@ -1,45 +1,43 @@
-<<<<<<< HEAD
 # 嵌入式 Linux 常用命令
-=======
-# 嵌入式 Linux 基础命令
->>>>>>> 8d2bfbc45cf20452045f5bb8536863761812c93a
 
 > 面向嵌入式 Linux 开发、驱动调试、板卡调试、系统维护。
 
+## 目录
+
+- [文件系统操作](#1-文件系统操作)
+- [文件查看](#2-文件查看)
+- [文件搜索](#3-文件搜索)
+- [权限管理](#4-权限管理)
+- [进程管理](#5-进程管理)
+- [CPU 和内存](#6-cpu-和内存)
+- [网络调试](#7-网络调试)
+- [串口调试](#8-串口调试)
+- [USB 调试](#9-usb-调试)
+- [存储管理](#10-存储管理)
+- [内核调试](#11-内核调试)
+- [设备树查看](#12-设备树查看)
+- [驱动模块](#13-驱动模块)
+- [字符设备](#14-字符设备)
+- [GPIO 调试](#15-gpio-调试)
+- [I2C 调试](#16-i2c-调试)
+- [SPI 调试](#17-spi-调试)
+- [ALSA 音频调试](#18-alsa-音频调试)
+- [调试工具](#19-调试工具)
+- [常用调试组合](#20-嵌入式常用调试组合)
+- [常用目录说明](#常用目录说明)
+- [核心命令速查](#嵌入式linux调试核心命令)
+
 ---
 
-# 目录
+## 1. 文件系统操作
 
-* 文件系统操作
-* 文件查看
-* 权限管理
-* 进程管理
-* 系统信息
-* 网络调试
-* 串口调试
-* USB调试
-* 存储管理
-* 内核调试
-* 设备树
-* 驱动模块
-* 字符设备
-* GPIO
-* I2C
-* SPI
-* ALSA音频
-* 调试工具
-
----
-
-# 1. 文件系统操作
-
-## 当前路径
+### 当前路径
 
 ```bash
 pwd
 ```
 
-## 查看目录
+### 查看目录
 
 ```bash
 ls
@@ -47,7 +45,7 @@ ls -l
 ls -al
 ```
 
-## 切换目录
+### 切换目录
 
 ```bash
 cd /path
@@ -55,28 +53,28 @@ cd ..
 cd ~
 ```
 
-## 创建目录
+### 创建目录
 
 ```bash
 mkdir test
 mkdir -p /home/test
 ```
 
-## 删除
+### 删除
 
 ```bash
 rm file
 rm -rf dir
 ```
 
-## 复制
+### 复制
 
 ```bash
 cp file1 file2
 cp -r dir1 dir2
 ```
 
-## 移动
+### 移动
 
 ```bash
 mv old new
@@ -84,33 +82,33 @@ mv old new
 
 ---
 
-# 2. 文件查看
+## 2. 文件查看
 
-## 查看文件
+### 查看文件
 
 ```bash
 cat file
 ```
 
-分页：
+### 分页查看
 
 ```bash
 less file
 ```
 
-查看前面：
+### 查看前面
 
 ```bash
 head -n 20 file
 ```
 
-查看末尾：
+### 查看末尾
 
 ```bash
 tail -n 20 file
 ```
 
-实时查看日志：
+### 实时查看日志
 
 ```bash
 tail -f log
@@ -118,21 +116,21 @@ tail -f log
 
 ---
 
-# 3. 文件搜索
+## 3. 文件搜索
 
-搜索内容：
+### 搜索内容
 
 ```bash
 grep "text" file
 ```
 
-递归搜索：
+### 递归搜索
 
 ```bash
 grep -r "text" .
 ```
 
-查找文件：
+### 查找文件
 
 ```bash
 find / -name "*.ko"
@@ -140,60 +138,60 @@ find / -name "*.ko"
 
 ---
 
-# 4. 权限管理
+## 4. 权限管理
 
-查看权限：
+### 查看权限
 
 ```bash
 ls -l
 ```
 
-修改权限：
+### 修改权限
 
 ```bash
 chmod 755 app
 chmod +x app
 ```
 
-修改用户：
+### 修改用户
 
 ```bash
 chown root:root file
 ```
 
-权限含义：
+### 权限含义
 
-```
-r 读
-w 写
-x 执行
-```
+| 符号 | 含义 |
+|------|------|
+| r | 读 |
+| w | 写 |
+| x | 执行 |
 
 ---
 
-# 5. 进程管理
+## 5. 进程管理
 
-查看进程：
+### 查看进程
 
 ```bash
 ps
 ps -ef
 ```
 
-动态查看：
+### 动态查看
 
 ```bash
 top
 ```
 
-结束进程：
+### 结束进程
 
 ```bash
 kill PID
 kill -9 PID
 ```
 
-后台运行：
+### 后台运行
 
 ```bash
 ./app &
@@ -201,28 +199,28 @@ kill -9 PID
 
 ---
 
-# 6. CPU和内存
+## 6. CPU 和内存
 
-CPU信息：
+### CPU 信息
 
 ```bash
 cat /proc/cpuinfo
 ```
 
-内核版本：
+### 内核版本
 
 ```bash
 uname -a
 uname -r
 ```
 
-内存：
+### 内存
 
 ```bash
 free -h
 ```
 
-系统信息：
+### 系统信息
 
 ```bash
 cat /proc/version
@@ -230,45 +228,41 @@ cat /proc/version
 
 ---
 
-# 7. 网络调试
+## 7. 网络调试
 
-查看IP：
+### 查看 IP
 
 ```bash
 ifconfig
-```
-
-或者：
-
-```bash
+# 或
 ip addr
 ```
 
-查看网卡：
+### 查看网卡
 
 ```bash
 ip link
 ```
 
-测试网络：
+### 测试网络
 
 ```bash
 ping 192.168.1.1
 ```
 
-查看路由：
+### 查看路由
 
 ```bash
 ip route
 ```
 
-SSH：
+### SSH
 
 ```bash
 ssh root@192.168.1.100
 ```
 
-文件传输：
+### 文件传输
 
 ```bash
 scp file root@ip:/path
@@ -276,15 +270,15 @@ scp file root@ip:/path
 
 ---
 
-# 8. 串口调试
+## 8. 串口调试
 
-查看串口：
+### 查看串口
 
 ```bash
 ls /dev/tty*
 ```
 
-常见：
+常见设备：
 
 ```
 /dev/ttyS0
@@ -292,13 +286,13 @@ ls /dev/tty*
 /dev/ttyACM0
 ```
 
-minicom：
+### minicom
 
 ```bash
 minicom -D /dev/ttyUSB0 -b 115200
 ```
 
-screen：
+### screen
 
 ```bash
 screen /dev/ttyUSB0 115200
@@ -306,15 +300,15 @@ screen /dev/ttyUSB0 115200
 
 ---
 
-# 9. USB调试
+## 9. USB 调试
 
-查看USB：
+### 查看 USB
 
 ```bash
 lsusb
 ```
 
-查看USB日志：
+### 查看 USB 日志
 
 ```bash
 dmesg | grep usb
@@ -322,33 +316,33 @@ dmesg | grep usb
 
 ---
 
-# 10. 存储管理
+## 10. 存储管理
 
-查看挂载：
+### 查看挂载
 
 ```bash
 mount
 ```
 
-查看空间：
+### 查看空间
 
 ```bash
 df -h
 ```
 
-查看块设备：
+### 查看块设备
 
 ```bash
 lsblk
 ```
 
-挂载：
+### 挂载
 
 ```bash
 mount /dev/sda1 /mnt
 ```
 
-卸载：
+### 卸载
 
 ```bash
 umount /mnt
@@ -356,27 +350,27 @@ umount /mnt
 
 ---
 
-# 11. 内核调试
+## 11. 内核调试
 
-查看内核日志：
+### 查看内核日志
 
 ```bash
 dmesg
 ```
 
-实时：
+### 实时查看
 
 ```bash
 dmesg -w
 ```
 
-过滤：
+### 过滤
 
 ```bash
 dmesg | grep driver
 ```
 
-查看启动信息：
+### 查看启动信息
 
 ```bash
 dmesg | less
@@ -384,21 +378,21 @@ dmesg | less
 
 ---
 
-# 12. 设备树查看
+## 12. 设备树查看
 
-设备树目录：
+### 设备树目录
 
 ```bash
 ls /proc/device-tree
 ```
 
-查看model：
+### 查看 model
 
 ```bash
 cat /proc/device-tree/model
 ```
 
-查看节点：
+### 查看节点
 
 ```bash
 ls /proc/device-tree/
@@ -406,64 +400,61 @@ ls /proc/device-tree/
 
 ---
 
-# 13. 驱动模块
+## 13. 驱动模块
 
-查看模块：
+### 查看模块
 
 ```bash
 lsmod
 ```
 
-加载：
+### 加载
 
 ```bash
 insmod xxx.ko
 ```
 
-卸载：
+### 卸载
 
-````bash
+```bash
 rmmod xxx
-````
+```
 
-构建依赖数据库：
+### 构建依赖数据库
 
 ```bash
 depmod
-````
+```
 
-加载模块：
+### 加载模块（自动处理依赖）
 
 ```bash
 modprobe xxx
-````
+```
 
-查看模块信息：
+### 查看模块信息
 
 ```bash
 modinfo xxx.ko
 ```
 
-```
-```
-
 ---
 
-# 14. 字符设备
+## 14. 字符设备
 
-查看设备：
+### 查看设备
 
 ```bash
 ls /dev
 ```
 
-查看设备号：
+### 查看设备号
 
 ```bash
 cat /proc/devices
 ```
 
-创建节点：
+### 创建节点
 
 ```bash
 mknod /dev/test c 200 0
@@ -477,15 +468,15 @@ mknod 文件 类型 主设备号 次设备号
 
 ---
 
-# 15. GPIO调试
+## 15. GPIO 调试
 
-查看GPIO：
+### 查看 GPIO
 
 ```bash
 cat /sys/kernel/debug/gpio
 ```
 
-sysfs GPIO：
+### sysfs GPIO
 
 导出：
 
@@ -507,33 +498,33 @@ echo 1 > /sys/class/gpio/gpio20/value
 
 ---
 
-# 16. I2C调试
+## 16. I2C 调试
 
-安装：
+### 安装工具
 
 ```bash
 apt install i2c-tools
 ```
 
-查看总线：
+### 查看总线
 
 ```bash
 i2cdetect -l
 ```
 
-扫描设备：
+### 扫描设备
 
 ```bash
 i2cdetect -y 1
 ```
 
-读寄存器：
+### 读寄存器
 
 ```bash
 i2cget -y 1 0x50 0x00
 ```
 
-写寄存器：
+### 写寄存器
 
 ```bash
 i2cset -y 1 0x50 0x00 0xff
@@ -541,15 +532,15 @@ i2cset -y 1 0x50 0x00 0xff
 
 ---
 
-# 17. SPI调试
+## 17. SPI 调试
 
-查看SPI设备：
+### 查看 SPI 设备
 
 ```bash
 ls /dev/spidev*
 ```
 
-查看日志：
+### 查看日志
 
 ```bash
 dmesg | grep spi
@@ -557,33 +548,33 @@ dmesg | grep spi
 
 ---
 
-# 18. ALSA音频调试
+## 18. ALSA 音频调试
 
-查看播放设备：
+### 查看播放设备
 
 ```bash
 aplay -l
 ```
 
-查看录音设备：
+### 查看录音设备
 
 ```bash
 arecord -l
 ```
 
-播放：
+### 播放
 
 ```bash
 aplay test.wav
 ```
 
-录音：
+### 录音
 
 ```bash
 arecord -d 5 test.wav
 ```
 
-查看声卡：
+### 查看声卡
 
 ```bash
 cat /proc/asound/cards
@@ -591,33 +582,33 @@ cat /proc/asound/cards
 
 ---
 
-# 19. 调试工具
+## 19. 调试工具
 
-查看系统调用：
+### 查看系统调用
 
 ```bash
 strace ./app
 ```
 
-查看动态库：
+### 查看动态库
 
 ```bash
 ldd app
 ```
 
-查看文件类型：
+### 查看文件类型
 
 ```bash
 file app
 ```
 
-查看符号：
+### 查看符号
 
 ```bash
 nm app
 ```
 
-十六进制查看：
+### 十六进制查看
 
 ```bash
 hexdump -C file
@@ -625,37 +616,37 @@ hexdump -C file
 
 ---
 
-# 20. 嵌入式常用调试组合
+## 20. 嵌入式常用调试组合
 
-## 查看驱动是否加载
+### 查看驱动是否加载
 
 ```bash
 lsmod
 dmesg | tail
 ```
 
-## 查看设备是否注册
+### 查看设备是否注册
 
 ```bash
 cat /proc/devices
 ls /dev
 ```
 
-## 查看GPIO问题
+### 查看 GPIO 问题
 
 ```bash
 cat /sys/kernel/debug/gpio
 dmesg | grep gpio
 ```
 
-## 查看I2C问题
+### 查看 I2C 问题
 
 ```bash
 i2cdetect -y 1
 dmesg | grep i2c
 ```
 
-## 查看音频问题
+### 查看音频问题
 
 ```bash
 aplay -l
@@ -665,54 +656,28 @@ dmesg | grep snd
 
 ---
 
-# 常用目录说明
+## 常用目录说明
 
-```
-/proc
-    内核运行状态
-
-/sys
-    Linux设备模型
-
-/dev
-    设备节点
-
-/lib/modules
-    内核模块
-
-/etc
-    系统配置
-
-/tmp
-    临时文件
-
-/mnt
-    挂载目录
-```
+| 目录 | 作用 |
+|------|------|
+| `/proc` | 内核运行状态 |
+| `/sys` | Linux 设备模型 |
+| `/dev` | 设备节点 |
+| `/lib/modules` | 内核模块 |
+| `/etc` | 系统配置 |
+| `/tmp` | 临时文件 |
+| `/mnt` | 挂载目录 |
 
 ---
 
-# 嵌入式Linux调试核心命令
+## 嵌入式 Linux 调试核心命令
 
-```
-dmesg
-    查看内核日志
-
-lsmod
-    查看驱动模块
-
-insmod
-    加载驱动
-
-rmmod
-    卸载驱动
-
-cat /proc
-    查看内核信息
-
-cat /sys
-    查看设备信息
-
-ls /dev
-    查看设备节点
-```
+| 命令 | 作用 |
+|------|------|
+| `dmesg` | 查看内核日志 |
+| `lsmod` | 查看驱动模块 |
+| `insmod` | 加载驱动 |
+| `rmmod` | 卸载驱动 |
+| `cat /proc` | 查看内核信息 |
+| `cat /sys` | 查看设备信息 |
+| `ls /dev` | 查看设备节点 |
