@@ -1,28 +1,49 @@
-# Source Insight使用方法
+# Source Insight 使用方法
 
-https://blog.csdn.net/mjy520123/article/details/120297021
+> 参考：[Source Insight 使用教程](https://blog.csdn.net/mjy520123/article/details/120297021)
 
-**破解方法：**
+![Source Insight](../images/image27.png)
 
-https://blog.csdn.net/YAOHAIPI/article/details/125191451
+---
 
-![](../images/image27.png)
+## 一、更改所有文件的编码
 
-**更改所有文件的编码**
+1. 菜单栏中 **【Options】** → **【Preferences】** → **File** 标签
+2. 最下面的 "**Default encoding**" 选项
+3. 选择 "**Chinese Simplified（GB2312）CP:936**"（简体中文）
 
--   菜单栏中**【Options】**>**【Preferences**】 >**File**标签中，最下面的"**Default encod­ing**" 选项；
--   选择"**Chinese Simplified（GB2312）CP:936**"（简体中文）这个编码即可改为GB2312；
+---
 
-**快捷键修改：**
+## 二、快捷键修改
 
-Options → Key Assignments
+**Options → Key Assignments**
 
-例如：Go back 改成 alt+⬅
+例如：`Go back` 改成 `alt + ←`
 
-**注释：**Options → Key AssignmentsEdit: Comment LinesEdit: Un-Comment Lines
+### 注释快捷键
 
-**显示行号：**View → Line Numbers
+- `Edit: Comment Lines` — 注释行
+- `Edit: Un-Comment Lines` — 取消注释
 
-**Source Insight 4.0 设置统一的字体大小的教程如下：**View -> Mono Font View**改字体：Options** ->Preference ->Set All Panel Fonts &Colors ->Font... : consolas 小四
+---
 
-**单击某变量或者函数后，自动高亮显示所有引用：**Options --->FileType Options ---> 勾选 "Highlight references to selected symbol"。
+## 三、显示行号
+
+**View → Line Numbers**
+
+---
+
+## 四、设置统一字体大小
+
+1. **View → Mono Font View**
+2. **改字体：Options → Preference → Set All Panel Fonts & Colors → Font...**
+   - 字体：`consolas`
+   - 大小：小四
+
+---
+
+## 五、自动高亮引用
+
+单击某变量或者函数后，自动高亮显示所有引用：
+
+**Options → File Type Options → 勾选 "Highlight references to selected symbol"**
