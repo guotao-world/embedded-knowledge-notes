@@ -169,49 +169,40 @@ git config --show-origin --list
 
 ---
 
-## 六、常规使用流程
+## 六、github常规使用流程
 
 ```
-① clone
-   git clone xxx
+        原作者的 GitHub Repository
+        original-user/repository
+                  │
+                  │ Fork
+                  ↓
+        我的 GitHub Repository
+        my-user/repository
+                  │
+                  │ Clone
+                  ↓
+              我的电脑
+                  │
+                  │ 修改代码
+                  ↓
+              git commit
+                  │
+                  │ git push
+                  ↓
+        我的 GitHub Repository
+        my-user/repository
+                  │
+                  │ Pull Request（PR）
+                  ↓
+        原作者的 GitHub Repository
+        original-user/repository
+                  │
+                  │ 审核 / Merge
+                  ↓
+          原作者 Repository
+          正式加入我的修改
 
-② 创建分支
-   git switch -c feature/rk3568-codec
-
-③ 写代码
-   codec.c
-   device-tree.dts
-   Kconfig
-   Makefile
-
-④ 编译
-   make
-
-⑤ 测试
-   烧录 RK3568 → 启动 Linux → 测试 ALSA → aplay / arecord
-
-⑥ 查看修改
-   git diff
-
-⑦ commit
-   git add .
-   git commit -m "ASoC: add xxx codec support"
-
-⑧ push
-   git push -u origin feature/rk3568-codec
-
-⑨ 创建 MR
-   feature/rk3568-codec → MR → main
-
-⑩ 同事 Review
-
-⑪ 修改
-
-⑫ Review 通过
-
-⑬ Merge
-
-⑭ CI 自动编译/测试
 ```
 
 ---
