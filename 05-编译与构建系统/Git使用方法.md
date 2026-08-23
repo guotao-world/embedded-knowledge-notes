@@ -98,7 +98,54 @@ git push origin main --tags
 
 ---
 
-## 四、其他指令
+## 四、本地项目推送到 GitHub 新仓库
+
+### 4.1 操作步骤
+
+在 GitHub 上创建空仓库后，把本地文件夹推上去：
+
+```bash
+# 1. 进入本地项目目录
+cd F:\github_workspace\xxxxxxxx
+
+# 2. 初始化 Git 仓库
+git init
+
+# 3. 添加所有文件到暂存区
+git add .
+
+# 4. 创建首次提交
+git commit -m "initial commit"
+
+# 5. 将默认分支重命名为 main
+git branch -M main
+
+# 6. 添加远程仓库地址
+git remote add origin https://github.com/你的用户名/photography-knowledge-notes.git
+
+# 7. 推送到远程并设置 upstream
+git push -u origin main
+```
+
+### 4.2 常见问题：push 失败（仓库已含 README）
+
+如果 GitHub 仓库创建时勾选了 **Add a README file**，远程仓库已经有一次提交，而本地仓库没有共同历史，直接 push 会失败。
+
+**解决方法：** 先从远程拉取代码，允许合并两个没有共同历史起点的仓库，再推送。
+
+```bash
+# 从远程 main 分支拉取，允许合并不相关历史
+git pull origin main --allow-unrelated-histories
+
+# 拉取成功后再推送
+git push
+```
+
+> **说明：** `--allow-unrelated-histories` 参数用于允许合并两个没有共同提交历史的 Git 仓库。正常情况下（如日常协作开发）不需要这个参数，只有在本地仓库和远程仓库各自独立创建时才需要。
+
+---
+
+## 五、其他指令
 
 ### 查看远程仓库地址
 
@@ -122,7 +169,7 @@ git config --show-origin --list
 
 ---
 
-## 五、常规使用流程
+## 六、常规使用流程
 
 ```
 ① clone
@@ -169,7 +216,7 @@ git config --show-origin --list
 
 ---
 
-## 六、常见问题
+## 七、常见问题
 
 ### Q：分支与仓库的关系？
 
@@ -196,50 +243,3 @@ git config --show-origin --list
 ```
 Fork → Clone → Branch → Commit → Push → PR
 ```
-
----
-
-## 七、本地项目推送到 GitHub 新仓库
-
-### 7.1 操作步骤
-
-在 GitHub 上创建空仓库后，把本地文件夹推上去：
-
-```bash
-# 1. 进入本地项目目录
-cd F:\github_workspace\xxxxxxxx
-
-# 2. 初始化 Git 仓库
-git init
-
-# 3. 添加所有文件到暂存区
-git add .
-
-# 4. 创建首次提交
-git commit -m "initial commit"
-
-# 5. 将默认分支重命名为 main
-git branch -M main
-
-# 6. 添加远程仓库地址
-git remote add origin https://github.com/你的用户名/photography-knowledge-notes.git
-
-# 7. 推送到远程并设置 upstream
-git push -u origin main
-```
-
-### 7.2 常见问题：push 失败（仓库已含 README）
-
-如果 GitHub 仓库创建时勾选了 **Add a README file**，远程仓库已经有一次提交，而本地仓库没有共同历史，直接 push 会失败。
-
-**解决方法：** 先从远程拉取代码，允许合并两个没有共同历史起点的仓库，再推送。
-
-```bash
-# 从远程 main 分支拉取，允许合并不相关历史
-git pull origin main --allow-unrelated-histories
-
-# 拉取成功后再推送
-git push
-```
-
-> **说明：** `--allow-unrelated-histories` 参数用于允许合并两个没有共同提交历史的 Git 仓库。正常情况下（如日常协作开发）不需要这个参数，只有在本地仓库和远程仓库各自独立创建时才需要。
