@@ -213,9 +213,10 @@ git config --show-origin --list
 
 **A：** Branch 不是独立存在的，它属于某一个 Git Repository。
 
-### Q：为什么必须 Fork？
+### Q：Fork是什么？有什么作用？与clone的区别是什么？PR是什么？
 
-**A：** 严格来说不是必须 Fork。只有在一种典型情况下需要 Fork——你没有原仓库的写权限。
+**A：** Fork：把别人的 GitHub 仓库（Repository）复制一份到自己的 GitHub 账号下，同时保留与原仓库的关联关系，主要用于没有原仓库写权限时参与开源项目开发。 Clone：把 GitHub 上的仓库下载到自己的电脑，方便本地修改和开发。 PR（Pull Request）：向原仓库提交一个合并请求，请求项目维护者审核并把你的修改合并到原项目中。
+
 
 ### Q：远程仓库比本地新怎么办？GitHub上的 main 分支已经有新的提交，但是你的本地没有。
 
