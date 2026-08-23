@@ -59,6 +59,13 @@ git push -u origin main
 git push
 ```
 
+### 强制推送到远程
+
+```bash
+# 回退版本后，强制推送到远程（覆盖历史）
+git push
+```
+
 ---
 
 ## 三、创建版本（Tag）
@@ -175,6 +182,10 @@ git config --show-origin --list
 ### Q：远程仓库比本地新怎么办？GitHub上的 main 分支已经有新的提交，但是你的本地没有。
 
 **A：** 解决方法：先拉取远程代码，自动合并成功。或出现冲突，查看**git status**，解决冲突后add、commit、push。如果你确定远程内容不要了，可以强制覆盖 GitHub指令为git push -f origin main
+
+### Q：hard回退与soft回退有什么区别。
+
+**A：** soft回退会保留工作区，可以修改commit信息后重新提交。hard回退不保留工作区，把commit、add、代码全部丢弃，hard 最危险，因为它会直接丢弃本地未保存修改。
 
 开源项目非常经典的模式：
 
