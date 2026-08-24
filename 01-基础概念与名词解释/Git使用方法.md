@@ -16,7 +16,7 @@ git config --global user.email "xxxxxxx@xxxxxxx.com"
 ### 克隆仓库
 
 ```bash
-git clone https://github.com/guotao-lab/test.git
+git clone https://github.com/guotao-world/test.git
 ```
 
 ### 修改文件
