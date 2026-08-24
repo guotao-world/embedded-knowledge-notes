@@ -145,7 +145,114 @@ git push
 
 ---
 
-## 五、其他指令
+## 五、使用 SSH 操作 GitHub 仓库
+
+### 5.1 生成 SSH Key
+
+查看是否已经存在 SSH Key：
+
+```bash
+dir %USERPROFILE%\.ssh
+```
+
+如果不存在，生成 SSH Key：
+
+```bash
+ssh-keygen -t ed25519 -C "你的GitHub邮箱"
+```
+
+示例：
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+生成后：
+
+- **私钥：** `C:\Users\用户名\.ssh\id_ed25519`
+- **公钥：** `C:\Users\用户名\.ssh\id_ed25519.pub`
+
+> **注意：** `id_ed25519` 是私钥，不要泄露。`id_ed25519.pub` 是公钥，可以上传到 GitHub。
+
+### 5.2 查看 SSH 公钥
+
+Windows CMD：
+
+```bash
+type %USERPROFILE%\.ssh\id_ed25519.pub
+```
+
+复制输出内容：
+
+```
+ssh-ed25519 AAAAC3xxxxxxxxxxxxxxxx 用户名@电脑名
+```
+
+### 5.3 GitHub 添加 SSH Key
+
+操作路径：
+
+```
+GitHub → Settings → SSH and GPG keys → New SSH key
+```
+
+填写：
+
+- **Title：** 例如 `Windows-PC`
+- **Key：** 粘贴刚才复制的公钥内容
+
+点击 **Add SSH key**。
+
+### 5.4 测试 SSH 连接
+
+执行：
+
+```bash
+ssh -T git@github.com
+```
+
+第一次连接输入：
+
+```
+yes
+```
+
+成功显示：
+
+```
+Hi 用户名! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+说明 SSH 配置成功。
+
+### 5.5 使用 SSH 克隆仓库
+
+```bash
+git clone git@github.com:xxxxxx/xxxxxx.git
+```
+
+之后就可以正常的 pull 及 push 了。
+
+### 5.6 已有 HTTPS 仓库切换为 SSH
+
+如果是已经通过 HTTPS 克隆完了的仓库，通过以下方式切换源：
+
+```bash
+# 查看当前远程地址
+git remote -v
+
+# 切换为 SSH 地址
+git remote set-url origin git@github.com:xxxxxx/xxxxxx.git
+
+# 验证切换结果
+git remote -v
+```
+
+之后就可以正常的 pull 及 push 了。
+
+---
+
+## 六、其他指令
 
 ### 查看远程仓库地址
 
@@ -169,7 +276,7 @@ git config --show-origin --list
 
 ---
 
-## 六、github常规使用流程
+## 七、github常规使用流程
 
 ```
         原作者的 GitHub Repository
@@ -207,7 +314,7 @@ git config --show-origin --list
 
 ---
 
-## 七、常见问题
+## 八、常见问题
 
 ### Q：分支与仓库的关系？
 
