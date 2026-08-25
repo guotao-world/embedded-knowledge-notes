@@ -63,7 +63,67 @@ imx_pmx_set
 
 ---
 
-## 五、笔记
+## 五、pinctrl 配置调用流程图
+
+### 5.1 really_probe 内部流程
+
+```
+[ 内核启动 / 驱动加载 ]
+        │
+        ▼
+driver_register()          // 驱动注册
+        │
+        ▼
+bus_add_driver()           // 添加到平台总线
+        │
+        ▼
+driver_attach()            // 尝试匹配设备
+        │
+        ▼ (匹配成功)
+really_probe()             // ★ 进入真正的探测流程 ★
+        │
+        ├── pinctrl_bind_pins()     // ★★ 在这里，pinctrl 被初始化！★★
+        │
+        ├── dev_pm_domain_attach()  // 附加电源域
+        │
+        └── dev->bus->probe()       // 调用 platform_drv_probe
+                │
+                ├── of_clk_set_defaults()      // 配置时钟
+                ├── dev_pm_domain_attach()      // 电源域（再次尝试）
+                └── drv->probe()                 // ★ 调用 fsl_sai_probe ★
+```
+
+### 5.2 完整调用链条（从上到下）
+
+```
+驱动加载（insmod 或 内核内置）
+        ↓
+__platform_driver_register()          // platform_driver 注册入口
+        ↓
+driver_register(&drv->driver)        // 注册到内核设备模型
+        ↓
+bus_add_driver()                      // 加到平台总线
+        ↓
+driver_attach()                       // 尝试绑定设备
+        ↓
+__driver_attach()                     // 遍历总线上的设备寻找匹配
+        ↓
+driver_probe_device()                 // 找到匹配设备，准备探测
+        ↓
+really_probe()                        // ★ 核心探测函数 ★
+        ↓
+dev->bus->probe(dev)
+即（platform_drv_probe()）            // ★ 调用 platform_bus_type.probe 中间函数 ★
+        ↓
+drv->probe(dev)
+即（fsl_sai_probe()）                 // ★ 调用驱动开发者的 probe，真正的硬件初始化 ★
+```
+
+> **关键点：** `pinctrl_bind_pins()` 在 `really_probe()` 中、`dev->bus->probe()` 之前被调用。这意味着在驱动开发者的 `probe` 函数执行之前，pinctrl 已经完成了引脚复用和电气属性的配置，确保外设通信链路可用。
+
+---
+
+## 六、笔记
 
 ### DTS 中 `&xxx` 引用的优先级
 
@@ -77,7 +137,7 @@ imx_pmx_set
 
 ---
 
-## 六、pinctrl 私有数据格式
+## 七、pinctrl 私有数据格式
 
 ### pins 数组宏解析
 
@@ -143,7 +203,7 @@ struct imx_pin_group {
 
 ---
 
-## 七、pinctrl 状态配置
+## 八、pinctrl 状态配置
 
 ### `pinctrl-names`
 
@@ -184,7 +244,7 @@ pinctrl_select_state(...);
 
 ---
 
-## 八、GPIO_ACTIVE_HIGH 逻辑激活方式
+## 九、GPIO_ACTIVE_HIGH 逻辑激活方式
 
 驱动只用 `gpiod_set_value(desc, 1)` / `0`：
 
@@ -201,7 +261,7 @@ gpiod_set_value(desc, 1);  // LED 总是亮，不管硬件是高激活还是低�
 
 ---
 
-## 九、注册顺序
+## 十、注册顺序
 
 1. `insmod` → 注册 `platform_driver`
 2. 内核根据 `compatible = "atkalpha-led";` 匹配驱动 `.of_match_table = ...`
@@ -209,7 +269,7 @@ gpiod_set_value(desc, 1);  // LED 总是亮，不管硬件是高激活还是低�
 
 ---
 
-## 十、完整写法示例
+## 十一、完整写法示例
 
 ### 设备树
 
@@ -239,7 +299,7 @@ gpiod_set_value(desc, 1);
 
 ---
 
-## 十一、gpiod 调用流程
+## 十二、gpiod 调用流程
 
 ```
 设备树
@@ -269,7 +329,7 @@ gpio_chip->set()
 
 ---
 
-## 十二、备注：GPIO 上电默认状态
+## 十三、备注：GPIO 上电默认状态
 
 芯片在上电后、内核软件初始化之前，所有 GPIO 会进入一个确定的、安全的状态。这个状态通常在芯片数据手册的"GPIO 章节"或"系统复位与控制章节"有明确说明。
 
