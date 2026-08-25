@@ -145,7 +145,7 @@ git push
 
 ---
 
-## 五、使用 SSH 操作 GitHub 仓库
+## 五、使用 SSH 操作 GitHub 仓库 (window)
 
 ### 5.1 生成 SSH Key
 

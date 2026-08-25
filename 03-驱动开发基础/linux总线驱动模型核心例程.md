@@ -1,6 +1,31 @@
 # Linux 总线驱动模型核心例程
+>参考野火linux教程
 
 ## 一、核心结构体
+
+### struct bus_type
+
+```c
+struct bus_type {
+    const char              *name;
+    const struct attribute_group **bus_groups;
+    const struct attribute_group **dev_groups;
+    const struct attribute_group **drv_groups;
+
+    int (*match)(struct device *dev, struct device_driver *drv);
+    int (*uevent)(struct device *dev, struct kobj_uevent_env *env);
+    int (*probe)(struct device *dev);
+    int (*remove)(struct device *dev);
+
+    int (*suspend)(struct device *dev, pm_message_t state);
+    int (*resume)(struct device *dev);
+
+    const struct dev_pm_ops *pm;
+
+    struct subsys_private *p;
+
+};
+```
 
 ### struct device
 
