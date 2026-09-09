@@ -78,7 +78,7 @@
 
 ### 06-U-Boot与启动
 
-- [RK3568 安全启动 + SO 库芯片绑定：完整正确流程](./06-U-Boot与启动/RK3568安全启动与加密机制.md)
+- [RK3568 安全启动 + SO 库芯片绑定流程](./06-U-Boot与启动/RK3568安全启动与加密机制.md)
 - [Secure Boot 的核心思想](./06-U-Boot与启动/Secure-Boot-的核心思想.md)
 - [U-Boot 启动 Linux 内核指令](./06-U-Boot与启动/uboot启动linux内核指令.md)
 
