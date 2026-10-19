@@ -1,4 +1,4 @@
-# Python print() 函数讲解
+# Python print函数讲解
 
 > print() 是 Python 最基础的输出函数。这份笔记整理了它的完整用法：基本输出、输出变量、sep / end / f-string 参数、输出到文件，以及与 C 语言 printf() 的对比。
 
