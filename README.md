@@ -111,6 +111,7 @@
 
 - [Python 入门学习问答合集](./10-Python语言与软件设计/Python学习问答合集.md)
 - [Python 异常处理与文件读写问答](./10-Python语言与软件设计/Python异常处理与文件读写问答.md)
+- [Python 模块与包问答](./10-Python语言与软件设计/Python模块与包问答.md)
 
 ### 11-其他
 
