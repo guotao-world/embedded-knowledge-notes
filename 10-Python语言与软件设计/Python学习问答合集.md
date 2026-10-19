@@ -1,7 +1,7 @@
 # Python 入门学习问答合集
 
 > 一个零基础 Python 学习者的真实提问记录：从基础语法到面向对象（self / cls / 类变量）的逐步追问。
-> 本文档包含全部问答；讲解配图在 `images/` 目录，可运行示例代码在 `code/` 目录。
+> 本文档包含全部问答；讲解配图在 [images/](images/) 目录，可运行示例代码在 [code/](code/) 目录。
 
 ---
 
@@ -46,6 +46,8 @@
 python code/Python入门学习代码.py
 ```
 
+直接打开：[code/Python入门学习代码.py](code/Python入门学习代码.py)
+
 第 10 节会等待输入，输入 `done` 结束。
 
 ### 关键约定
@@ -78,8 +80,8 @@ python code/Python入门学习代码.py
 
 ### 代码
 
-- `code/Python类与self学习代码.py`：8 节完整讲解，含"忘了写 self 的真实报错演示"；
-- `code/this和self测试.py`：把 self 改名 this 的试验——证明 self 只是约定名。
+- [code/Python类与self学习代码.py](code/Python类与self学习代码.py)：8 节完整讲解，含"忘了写 self 的真实报错演示"；
+- [code/this和self测试.py](code/this和self测试.py)：把 self 改名 this 的试验——证明 self 只是约定名。
 
 ### 关键实验
 
@@ -215,7 +217,7 @@ TypeError: Wrong.hello() takes 0 positional arguments but 1 was given
 
 ### 代码
 
-`code/判断方法要不要self.py`：三种方法放在同一个类里对照，反例的真实报错也跑出来了。
+[code/判断方法要不要self.py](code/判断方法要不要self.py)：三种方法放在同一个类里对照，反例的真实报错也跑出来了。
 
 ---
 
@@ -247,7 +249,7 @@ cls  = <class '__main__.Player'>           ← cls 里装的是"类本身"
 
 ### 代码
 
-`code/self和cls装的是什么.py`：把 self / cls 直接打印出来看；并验证"类方法用对象调用时，装的仍然是类，不是那个对象"。
+[code/self和cls装的是什么.py](code/self和cls装的是什么.py)：把 self / cls 直接打印出来看；并验证"类方法用对象调用时，装的仍然是类，不是那个对象"。
 
 ---
 
@@ -281,7 +283,7 @@ Player.game          # "RPG"        ← 类变量纹丝没动
 
 ### 代码
 
-`code/类变量到底谁能改.py`：4 种改法逐一演示，包含遮蔽陷阱、正确改法、类外直接改。
+[code/类变量到底谁能改.py](code/类变量到底谁能改.py)：4 种改法逐一演示，包含遮蔽陷阱、正确改法、类外直接改。
 
 ---
 
@@ -308,7 +310,7 @@ Player.game          # "RPG"        ← 类变量纹丝没动
 
 ### 代码
 
-`code/改类变量后实例化会怎样.py`：完整时间线演示（default_hp 100 → 200 → 300 三次修改），覆盖新实例、旧实例拷贝、旧实例动态读三种情况。
+[code/改类变量后实例化会怎样.py](code/改类变量后实例化会怎样.py)：完整时间线演示（default_hp 100 → 200 → 300 三次修改），覆盖新实例、旧实例拷贝、旧实例动态读三种情况。
 
 ---
 
