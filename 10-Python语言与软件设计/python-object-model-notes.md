@@ -267,6 +267,81 @@ greet() = ?              # 答案："B"（greet 换到新函数）
 
 ---
 
+## 12. 创建函数对象的 4 种方式（不止 def，补上 lambda）
+
+前面说过 "def / class = 创建对象 + 绑定名字"，但 `def` 只是最常见的一种，不是唯一。函数对象还有别的方式能造出来——正好把第 7 节关键字表里没展开的 `lambda` 补上。
+
+### 方式 1：def（最常见）
+
+```python
+def add(a, b):
+    return a + b
+```
+
+### 方式 2：lambda（匿名函数）—— 关键新概念
+
+```python
+add2 = lambda a, b: a + b     # 一行造一个函数对象，贴标签 add2
+add2(1, 2)                    # 3
+```
+
+### 方式 3：函数工厂（一个函数返回另一个函数）
+
+```python
+def make_multiplier(n):
+    def inner(x):             # 里面还是用 def 造
+        return x * n
+    return inner              # 返回函数对象
+
+times3 = make_multiplier(3)   # times3 就是一个函数对象
+times3(5)                     # 15
+```
+
+### 方式 4：从已有函数的代码"克隆"（高级，证明函数是对象）
+
+```python
+import types
+
+def original(x):
+    return x + 1
+
+clone = types.FunctionType(original.__code__, {})   # 用代码对象克隆
+clone(10)                     # 11
+```
+
+> 注意：克隆时要传 globals 字典；空 `{}` 只够没有全局依赖的函数用。
+
+### lambda 是什么：没有名字的函数
+
+```python
+f = lambda x: x * 2
+#   └─┬─┘ └─┬──┘
+#   参数   返回值（只能一个表达式）
+```
+
+- `def` 是**语句**：完整定义，能写多行；
+- `lambda` 是**表达式**：有值，能出现在任何表达式位置；
+- 所以它经常"临时造、用完即弃"，比如排序时指定比较键：
+
+```python
+data = [("b", 2), ("a", 3), ("c", 1)]
+sorted(data, key=lambda item: item[1])   # 按第 2 个元素排
+# 结果 [("c",1), ("b",2), ("a",3)]
+```
+
+方式 3 里 `make_multiplier(3)` 返回的 `inner`，本质也是 `def` 造的——所有方式最终都通向"函数对象"。
+
+### 一句话对比
+
+| 方式 | 写法 | 特点 |
+|---|---|---|
+| `def` | 语句 | 完整、多行、有名字 |
+| `lambda` | 表达式 | 单行、匿名、临时 |
+| 函数工厂 | `return` 出函数 | 批量"定制"函数（闭包） |
+| `types.FunctionType` | 克隆 `__code__` | 高级玩法，证明函数是对象 |
+
+---
+
 ## 附：一句话口诀
 
 > **一切皆对象，名字皆标签。** 等号先算右、再绑左；`()` 产出对象、`=` 才造标签；重新绑定撕标签，改对象内部则人人可见；del 删名字不释放内存；def/class 定义时造对象，调用时（实例）才新建。
