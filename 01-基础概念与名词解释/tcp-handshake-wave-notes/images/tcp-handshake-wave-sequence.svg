@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 1080" width="100%">
+  <defs>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f6feb"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#059669"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#666"/>
+    </marker>
+  </defs>
+
+  <rect x="20" y="10" width="880" height="34" rx="6" fill="#e8f0fe" stroke="#1f6feb"/>
+  <text x="460" y="33" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f6feb">① 建立连接 —— 三次握手 (Three-way Handshake)</text>
+
+  <rect x="120" y="55" width="160" height="36" rx="6" fill="#1f6feb"/>
+  <text x="200" y="79" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">客户端 Client</text>
+  <rect x="640" y="55" width="160" height="36" rx="6" fill="#d97706"/>
+  <text x="720" y="79" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">服务器端 Server</text>
+
+  <line x1="200" y1="91" x2="200" y2="470" stroke="#1f6feb" stroke-width="2" stroke-dasharray="5,4"/>
+  <line x1="720" y1="91" x2="720" y2="470" stroke="#d97706" stroke-width="2" stroke-dasharray="5,4"/>
+
+  <text x="200" y="110" text-anchor="middle" font-size="12" fill="#1f6feb">CLOSED</text>
+  <text x="720" y="110" text-anchor="middle" font-size="12" fill="#d97706">LISTEN</text>
+
+  <line x1="200" y1="140" x2="715" y2="140" stroke="#1f6feb" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <rect x="330" y="118" width="260" height="44" rx="4" fill="#fff" stroke="#1f6feb"/>
+  <text x="460" y="136" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f6feb">第 1 次握手</text>
+  <text x="460" y="153" text-anchor="middle" font-size="12" fill="#222">SYN=1, seq = x</text>
+  <text x="200" y="160" text-anchor="middle" font-size="11" fill="#1f6feb">SYN_SENT</text>
+
+  <line x1="720" y1="210" x2="205" y2="210" stroke="#d97706" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <rect x="300" y="188" width="320" height="44" rx="4" fill="#fff" stroke="#d97706"/>
+  <text x="460" y="206" text-anchor="middle" font-size="13" font-weight="bold" fill="#d97706">第 2 次握手</text>
+  <text x="460" y="223" text-anchor="middle" font-size="12" fill="#222">SYN=1, ACK=1, seq = y, ack = x+1</text>
+  <text x="720" y="230" text-anchor="middle" font-size="11" fill="#d97706">SYN_RCVD</text>
+
+  <line x1="200" y1="280" x2="715" y2="280" stroke="#1f6feb" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <rect x="300" y="258" width="320" height="44" rx="4" fill="#fff" stroke="#1f6feb"/>
+  <text x="460" y="276" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f6feb">第 3 次握手</text>
+  <text x="460" y="293" text-anchor="middle" font-size="12" fill="#222">ACK=1, seq = x+1, ack = y+1</text>
+
+  <rect x="115" y="320" width="170" height="30" rx="15" fill="#e8f0fe" stroke="#1f6feb"/>
+  <text x="200" y="340" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f6feb">ESTABLISHED</text>
+  <rect x="635" y="320" width="170" height="30" rx="15" fill="#fef3c7" stroke="#d97706"/>
+  <text x="720" y="340" text-anchor="middle" font-size="13" font-weight="bold" fill="#d97706">ESTABLISHED</text>
+
+  <text x="460" y="380" text-anchor="middle" font-size="12" fill="#666">连接建立，双方可传输数据 (第三次握手 ACK 报文也可携带数据)</text>
+  <line x1="200" y1="400" x2="715" y2="400" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrowGreen)"/>
+  <line x1="720" y1="430" x2="205" y2="430" stroke="#059669" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrowGreen)"/>
+  <text x="460" y="420" text-anchor="middle" font-size="11" fill="#059669">…… 应用数据双向传输 ……</text>
+
+  <line x1="20" y1="485" x2="900" y2="485" stroke="#999" stroke-width="1.5" stroke-dasharray="8,5"/>
+
+  <rect x="20" y="500" width="880" height="34" rx="6" fill="#fde8e8" stroke="#c0392b"/>
+  <text x="460" y="523" text-anchor="middle" font-size="18" font-weight="bold" fill="#c0392b">② 释放连接 —— 四次挥手 (Four-way Wave)，主动关闭方为客户端</text>
+
+  <rect x="120" y="545" width="160" height="30" rx="6" fill="#1f6feb"/>
+  <text x="200" y="565" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">客户端 (主动关闭)</text>
+  <rect x="640" y="545" width="160" height="30" rx="6" fill="#d97706"/>
+  <text x="720" y="565" text-anchor="middle" font-size="14" font-weight="bold" fill="#fff">服务器端 (被动关闭)</text>
+
+  <line x1="200" y1="575" x2="200" y2="1060" stroke="#1f6feb" stroke-width="2" stroke-dasharray="5,4"/>
+  <line x1="720" y1="575" x2="720" y2="1060" stroke="#d97706" stroke-width="2" stroke-dasharray="5,4"/>
+
+  <line x1="200" y1="610" x2="715" y2="610" stroke="#c0392b" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <rect x="300" y="588" width="320" height="44" rx="4" fill="#fff" stroke="#c0392b"/>
+  <text x="460" y="606" text-anchor="middle" font-size="13" font-weight="bold" fill="#c0392b">第 1 次挥手</text>
+  <text x="460" y="623" text-anchor="middle" font-size="12" fill="#222">FIN=1, ACK=1, seq = u, ack = v</text>
+  <text x="200" y="640" text-anchor="middle" font-size="11" fill="#c0392b">FIN_WAIT_1</text>
+
+  <line x1="720" y1="680" x2="205" y2="680" stroke="#d97706" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <rect x="300" y="658" width="320" height="44" rx="4" fill="#fff" stroke="#d97706"/>
+  <text x="460" y="676" text-anchor="middle" font-size="13" font-weight="bold" fill="#d97706">第 2 次挥手</text>
+  <text x="460" y="693" text-anchor="middle" font-size="12" fill="#222">ACK=1, seq = v, ack = u+1</text>
+  <text x="200" y="710" text-anchor="middle" font-size="11" fill="#c0392b">FIN_WAIT_2</text>
+  <text x="720" y="710" text-anchor="middle" font-size="11" fill="#d97706">CLOSE_WAIT</text>
+
+  <text x="460" y="735" text-anchor="middle" font-size="11" fill="#888">客户端→服务器方向已关闭；服务器仍可继续发送未发完的数据 (半关闭状态)</text>
+
+  <line x1="720" y1="775" x2="205" y2="775" stroke="#c0392b" stroke-width="2" marker-end="url(#arrowGray)"/>
+  <rect x="300" y="753" width="320" height="44" rx="4" fill="#fff" stroke="#c0392b"/>
+  <text x="460" y="771" text-anchor="middle" font-size="13" font-weight="bold" fill="#c0392b">第 3 次挥手</text>
+  <text x="460" y="788" text-anchor="middle" font-size="12" fill="#222">FIN=1, ACK=1, seq = w, ack = u+1</text>
+  <text x="720" y="805" text-anchor="middle" font-size="11" fill="#d97706">LAST_ACK</text>
+
+  <line x1="200" y1="845" x2="715" y2="845" stroke="#1f6feb" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <rect x="300" y="823" width="320" height="44" rx="4" fill="#fff" stroke="#1f6feb"/>
+  <text x="460" y="841" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f6feb">第 4 次挥手</text>
+  <text x="460" y="858" text-anchor="middle" font-size="12" fill="#222">ACK=1, seq = u+1, ack = w+1</text>
+
+  <rect x="115" y="890" width="170" height="30" rx="15" fill="#fee2e2" stroke="#c0392b"/>
+  <text x="200" y="910" text-anchor="middle" font-size="13" font-weight="bold" fill="#c0392b">TIME_WAIT</text>
+  <text x="720" y="910" text-anchor="middle" font-size="12" fill="#d97706">收到 ACK 后 → CLOSED</text>
+
+  <line x1="200" y1="930" x2="200" y2="990" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3"/>
+  <rect x="110" y="940" width="180" height="36" rx="6" fill="#fff7ed" stroke="#c0392b"/>
+  <text x="200" y="956" text-anchor="middle" font-size="12" font-weight="bold" fill="#c0392b">等待 2MSL</text>
+  <text x="200" y="971" text-anchor="middle" font-size="11" fill="#666">(最大报文生存周期)</text>
+
+  <rect x="115" y="1010" width="170" height="30" rx="15" fill="#eee" stroke="#666"/>
+  <text x="200" y="1030" text-anchor="middle" font-size="13" font-weight="bold" fill="#444">CLOSED</text>
+</svg>

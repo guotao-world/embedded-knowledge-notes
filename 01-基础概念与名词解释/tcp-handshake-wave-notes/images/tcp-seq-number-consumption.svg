@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" width="100%">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+  </defs>
+
+  <text x="410" y="25" text-anchor="middle" font-size="14" fill="#333">场景：客户端 ISN = 1000，发一个 SYN，然后发 5 字节数据 "Hello"，最后发 FIN 关闭连接</text>
+
+  <line x1="60" y1="280" x2="780" y2="280" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="790" y="285" font-size="13" fill="#333">序号 →</text>
+
+  <g font-size="12" text-anchor="middle">
+    <rect x="80" y="240" width="80" height="80" fill="#fee2e2" stroke="#c0392b" stroke-width="2"/>
+    <text x="120" y="265" font-weight="bold" fill="#c0392b">SYN</text>
+    <text x="120" y="295" fill="#c0392b" font-size="11">占 1 个号</text>
+    <text x="120" y="310" fill="#c0392b" font-size="11">(1000)</text>
+    <text x="120" y="340" fill="#333">1000</text>
+
+    <rect x="160" y="240" width="80" height="80" fill="#dbeafe" stroke="#1f6feb" stroke-width="1.5"/>
+    <text x="200" y="275" font-weight="bold" fill="#1f6feb">H</text>
+    <text x="200" y="310" fill="#1f6feb" font-size="11">数据字节</text>
+    <text x="200" y="340" fill="#333">1001</text>
+
+    <rect x="240" y="240" width="80" height="80" fill="#dbeafe" stroke="#1f6feb" stroke-width="1.5"/>
+    <text x="280" y="275" font-weight="bold" fill="#1f6feb">e</text>
+    <text x="280" y="310" fill="#1f6feb" font-size="11">数据字节</text>
+    <text x="280" y="340" fill="#333">1002</text>
+
+    <rect x="320" y="240" width="80" height="80" fill="#dbeafe" stroke="#1f6feb" stroke-width="1.5"/>
+    <text x="360" y="275" font-weight="bold" fill="#1f6feb">l</text>
+    <text x="360" y="310" fill="#1f6feb" font-size="11">数据字节</text>
+    <text x="360" y="340" fill="#333">1003</text>
+
+    <rect x="400" y="240" width="80" height="80" fill="#dbeafe" stroke="#1f6feb" stroke-width="1.5"/>
+    <text x="440" y="275" font-weight="bold" fill="#1f6feb">l</text>
+    <text x="440" y="310" fill="#1f6feb" font-size="11">数据字节</text>
+    <text x="440" y="340" fill="#333">1004</text>
+
+    <rect x="480" y="240" width="80" height="80" fill="#dbeafe" stroke="#1f6feb" stroke-width="1.5"/>
+    <text x="520" y="275" font-weight="bold" fill="#1f6feb">o</text>
+    <text x="520" y="310" fill="#1f6feb" font-size="11">数据字节</text>
+    <text x="520" y="340" fill="#333">1005</text>
+
+    <rect x="560" y="240" width="80" height="80" fill="#fee2e2" stroke="#c0392b" stroke-width="2"/>
+    <text x="600" y="265" font-weight="bold" fill="#c0392b">FIN</text>
+    <text x="600" y="295" fill="#c0392b" font-size="11">占 1 个号</text>
+    <text x="600" y="310" fill="#c0392b" font-size="11">(1006)</text>
+    <text x="600" y="340" fill="#333">1006</text>
+  </g>
+
+  <path d="M 200 180 Q 350 140 500 180" stroke="#059669" stroke-width="2" stroke-dasharray="5,4" fill="none" marker-end="url(#arrow)"/>
+  <rect x="280" y="130" width="140" height="36" rx="6" fill="#d1fae5" stroke="#059669"/>
+  <text x="350" y="148" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">中间发了一个纯 ACK</text>
+  <text x="350" y="163" text-anchor="middle" font-size="11" fill="#059669">不占任何序号！</text>
+
+  <g font-size="13">
+    <rect x="60" y="390" width="340" height="140" rx="6" fill="#fef2f2" stroke="#c0392b"/>
+    <text x="80" y="415" font-weight="bold" fill="#c0392b">✅ 消耗序号的（要占格子）</text>
+    <text x="80" y="440" fill="#333">• SYN：不管带不带数据，都占 1 个号</text>
+    <text x="80" y="465" fill="#333">• FIN：不管带不带数据，都占 1 个号</text>
+    <text x="80" y="490" fill="#333">• 应用数据：发几个字节就占几个号</text>
+    <text x="80" y="515" fill="#666" font-size="12">原因：这些都是"对字节流的贡献"，接收方必须逐一确认</text>
+
+    <rect x="420" y="390" width="360" height="140" rx="6" fill="#f0fdf4" stroke="#059669"/>
+    <text x="440" y="415" font-weight="bold" fill="#059669">❌ 不消耗序号的（不占格子）</text>
+    <text x="440" y="440" fill="#333">• 纯 ACK：只说"我收到了"，不产生新字节</text>
+    <text x="440" y="465" fill="#333">• 窗口通告、紧急指针等控制信息</text>
+    <text x="440" y="490" fill="#333">• RST、URG（严格说 UGG 指针指向数据，本身不占号）</text>
+    <text x="440" y="515" fill="#666" font-size="12">原因：只是状态通知，不改变"我接下来该发哪个字节"</text>
+  </g>
+</svg>
