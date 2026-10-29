@@ -136,14 +136,57 @@ ack = 对方的 seq + 1
 
 ---
 
-## 六、文件说明
+## 六、DHCP 协议工作过程（补充）
+
+> 虽然 DHCP 基于 UDP（不是 TCP），但同样是 408 高频考点，一起放在这里。
+
+### 6.1 问题：主机刚接入网络，怎么知道自己的 IP？
+
+主机出厂时只有网卡 MAC 地址，没有 IP。它怎么知道自己该用什么 IP、网关是谁、DNS 是多少？——这就是 DHCP（动态主机配置协议）要解决的事。
+
+### 6.2 四个阶段时序图
+
+![DHCP协议工作过程](./images/dhcp-process.svg)
+
+### 6.3 四个报文核心字段
+
+| 报文 | 方向 | 源IP | 目的IP | 关键字段 | 含义 |
+|---|---|---|---|---|---|
+| ① DISCOVER | C→S 广播 | 0.0.0.0 | 255.255.255.255 | chaddr=客户端MAC | "谁能给我分个IP？" |
+| ② OFFER | S→C 广播 | 192.168.1.1 | 255.255.255.255 | yiaddr=192.168.1.100 | "我可以给你这个IP" |
+| ③ REQUEST | C→S 广播 | 0.0.0.0 | 255.255.255.255 | Requested IP + Server ID | "我选了你，我要这个IP" |
+| ④ ACK | S→C 广播 | 192.168.1.1 | 255.255.255.255 | yiaddr + 子网掩码/网关/DNS | "正式分配，租期X秒" |
+
+### 6.4 为什么源IP是 0.0.0.0，服务器却知道是谁？
+
+这是最容易考的点。虽然 IP 层源地址是 `0.0.0.0`（我还没IP），但服务器通过三个途径识别客户端：
+
+1. **以太网帧头的源MAC地址**：最外层就写着客户端网卡的真实MAC，服务器网卡直接看到。
+2. **DHCP 报文中的 `chaddr` 字段**：明文写着客户端MAC地址。
+3. **options 里的两个关键选项**：
+   - `Requested IP Address`：告诉服务器"我想要你之前分给我的那个IP"
+   - `Server Identifier`：广播告诉所有DHCP服务器"我选了你这台"，其他服务器收到后会收回预留的IP。
+
+### 6.5 DHCP 端口号
+
+- 客户端：UDP 端口 **68**
+- 服务器：UDP 端口 **67**
+
+### 6.6 为什么全程广播？
+
+因为客户端一开始没有IP，单播给服务器它也不知道服务器在哪；而且可能有多台DHCP服务器，广播让所有服务器都收到 DISCOVER，客户端再从中选一个最合适的 OFFER。
+
+---
+
+## 七、文件说明
 
 ```
-tcp-handshake-wave-notes/
-├── README.md                              # 本文档
+11-其他/
+├── tcp握手协议.md                         # 本文档（TCP + DHCP）
 └── images/                                # 图片资源
-    ├── tcp-handshake-wave-sequence.svg    # 握手+挥手整体时序图
+    ├── tcp-handshake-wave-sequence.svg    # TCP 握手+挥手整体时序图
     ├── tcp-three-way-handshake-header.svg # 三次握手三个报文首部格式
     ├── tcp-four-way-wave-header.svg       # 四次挥手四个报文首部格式
-    └── tcp-seq-number-consumption.svg     # 序号消耗规则图解
+    ├── tcp-seq-number-consumption.svg    # TCP 序号消耗规则图解
+    └── dhcp-process.svg                   # DHCP 四阶段工作过程图
 ```

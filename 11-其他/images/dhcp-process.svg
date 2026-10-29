@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 780" width="100%">
+  <defs>
+    <marker id="arrB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f6feb"/>
+    </marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#059669"/>
+    </marker>
+    <marker id="arrO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <rect x="20" y="10" width="860" height="36" rx="6" fill="#e8f0fe" stroke="#1f6feb"/>
+  <text x="450" y="34" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f6feb">DHCP 协议工作过程（Discover → Offer → Request → Ack）</text>
+
+  <!-- 两端节点 -->
+  <rect x="120" y="60" width="200" height="50" rx="6" fill="#1f6feb"/>
+  <text x="220" y="82" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">客户端 H1</text>
+  <text x="220" y="100" text-anchor="middle" font-size="11" fill="#dbeafe">MAC=AA:BB:CC:DD:EE:FF  IP=无</text>
+
+  <rect x="580" y="60" width="200" height="50" rx="6" fill="#d97706"/>
+  <text x="680" y="82" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">DHCP 服务器</text>
+  <text x="680" y="100" text-anchor="middle" font-size="11" fill="#fef3c7">IP=192.168.1.1  端口67</text>
+
+  <!-- 生命线 -->
+  <line x1="220" y1="110" x2="220" y2="760" stroke="#1f6feb" stroke-width="2" stroke-dasharray="5,4"/>
+  <line x1="680" y1="110" x2="680" y2="760" stroke="#d97706" stroke-width="2" stroke-dasharray="5,4"/>
+
+  <!-- ===== 报文1: DISCOVER ===== -->
+  <line x1="220" y1="150" x2="675" y2="150" stroke="#1f6feb" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arrB)"/>
+  <rect x="300" y="120" width="300" height="80" rx="5" fill="#fff" stroke="#1f6feb" stroke-width="1.5"/>
+  <text x="450" y="140" text-anchor="middle" font-size="14" font-weight="bold" fill="#1f6feb">① DHCP DISCOVER（发现）</text>
+  <text x="450" y="158" text-anchor="middle" font-size="11" fill="#333">源IP: 0.0.0.0  →  目的IP: 255.255.255.255（广播）</text>
+  <text x="450" y="174" text-anchor="middle" font-size="11" fill="#333">chaddr = AA:BB:CC:DD:EE:FF（客户端MAC）</text>
+  <text x="450" y="190" text-anchor="middle" font-size="11" fill="#c0392b">"谁能给我分配一个IP地址？"</text>
+
+  <text x="680" y="220" text-anchor="middle" font-size="11" fill="#d97706">服务器收到，预留IP=192.168.1.100</text>
+
+  <!-- ===== 报文2: OFFER ===== -->
+  <line x1="680" y1="260" x2="225" y2="260" stroke="#d97706" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arrO)"/>
+  <rect x="300" y="230" width="300" height="80" rx="5" fill="#fff" stroke="#d97706" stroke-width="1.5"/>
+  <text x="450" y="250" text-anchor="middle" font-size="14" font-weight="bold" fill="#d97706">② DHCP OFFER（提供）</text>
+  <text x="450" y="268" text-anchor="middle" font-size="11" fill="#333">源IP: 192.168.1.1  →  目的IP: 255.255.255.255（广播）</text>
+  <text x="450" y="284" text-anchor="middle" font-size="11" fill="#333">yiaddr = 192.168.1.100（分给你的IP）</text>
+  <text x="450" y="300" text-anchor="middle" font-size="11" fill="#c0392b">"我可以给你 192.168.1.100，租期3600s"</text>
+
+  <text x="220" y="330" text-anchor="middle" font-size="11" fill="#1f6feb">客户端收到多个OFFER，选一个</text>
+
+  <!-- ===== 报文3: REQUEST ===== -->
+  <line x1="220" y1="370" x2="675" y2="370" stroke="#1f6feb" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arrB)"/>
+  <rect x="280" y="340" width="340" height="80" rx="5" fill="#fff" stroke="#1f6feb" stroke-width="1.5"/>
+  <text x="450" y="360" text-anchor="middle" font-size="14" font-weight="bold" fill="#1f6feb">③ DHCP REQUEST（请求）</text>
+  <text x="450" y="378" text-anchor="middle" font-size="11" fill="#333">源IP: 0.0.0.0  →  目的IP: 255.255.255.255（广播）</text>
+  <text x="450" y="394" text-anchor="middle" font-size="11" fill="#333">Requested IP=192.168.1.100, Server ID=192.168.1.1</text>
+  <text x="450" y="410" text-anchor="middle" font-size="11" fill="#c0392b">"我选了192.168.1.1，我想要192.168.1.100"</text>
+
+  <text x="680" y="440" text-anchor="middle" font-size="11" fill="#d97706">匹配到chaddr+Server ID，确认分配</text>
+
+  <!-- ===== 报文4: ACK ===== -->
+  <line x1="680" y1="480" x2="225" y2="480" stroke="#059669" stroke-width="2.5" marker-end="url(#arrG)"/>
+  <rect x="300" y="450" width="300" height="80" rx="5" fill="#fff" stroke="#059669" stroke-width="1.5"/>
+  <text x="450" y="470" text-anchor="middle" font-size="14" font-weight="bold" fill="#059669">④ DHCP ACK（确认）</text>
+  <text x="450" y="488" text-anchor="middle" font-size="11" fill="#333">源IP: 192.168.1.1  →  目的IP: 255.255.255.255（广播）</text>
+  <text x="450" y="504" text-anchor="middle" font-size="11" fill="#333">yiaddr=192.168.1.100 + 子网掩码/网关/DNS</text>
+  <text x="450" y="520" text-anchor="middle" font-size="11" fill="#c0392b">"好，这个IP正式分配给你，租期3600s"</text>
+
+  <!-- 状态变化 -->
+  <rect x="130" y="560" width="180" height="30" rx="15" fill="#fee2e2" stroke="#c0392b"/>
+  <text x="220" y="580" text-anchor="middle" font-size="12" font-weight="bold" fill="#c0392b">初始状态（无IP）</text>
+
+  <rect x="590" y="560" width="180" height="30" rx="15" fill="#fef3c7" stroke="#d97706"/>
+  <text x="680" y="580" text-anchor="middle" font-size="12" font-weight="bold" fill="#d97706">已预留，未确认</text>
+
+  <line x1="220" y1="600" x2="220" y2="640" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,3"/>
+  <line x1="680" y1="600" x2="680" y2="640" stroke="#d97706" stroke-width="2" stroke-dasharray="4,3"/>
+
+  <rect x="130" y="645" width="180" height="30" rx="15" fill="#d1fae5" stroke="#059669"/>
+  <text x="220" y="665" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">绑定IP=192.168.1.100</text>
+
+  <rect x="590" y="645" width="180" height="30" rx="15" fill="#d1fae5" stroke="#059669"/>
+  <text x="680" y="665" text-anchor="middle" font-size="12" font-weight="bold" fill="#059669">正式租约生效</text>
+
+  <!-- 底部说明：为什么源IP是0.0.0.0还能识别 -->
+  <rect x="40" y="700" width="820" height="65" rx="6" fill="#fef3c7" stroke="#d97706"/>
+  <text x="60" y="722" font-size="12" font-weight="bold" fill="#d97706">💡 为什么 DISCOVER/REQUEST 源IP是 0.0.0.0，服务器却知道是谁？</text>
+  <text x="60" y="742" font-size="11" fill="#333">① 以太网帧头里有客户端真实MAC地址   ② DHCP报文chaddr字段写着客户端MAC</text>
+  <text x="60" y="758" font-size="11" fill="#333">③ Requested IP告诉服务器"我要哪个IP"   ④ Server ID告诉所有服务器"我选了谁"，其他服务器收回预留</text>
+</svg>
